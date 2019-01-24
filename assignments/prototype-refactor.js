@@ -15,13 +15,15 @@ Prototype Refactor
   * destroy() // prototype method -> returns the string: 'Object was removed from the game.'
 */
 
-  function GameObject(objectAttrs) {
-    this.createdAt = objectAttrs.createdAt;
-    this.dimensions = objectAttrs.dimensions;
-  }
-  
-  GameObject.prototype.destroy = function() {
-    return `${this.name} was removed from the game.`;
+  class GameObject {
+      constructor(objectAttrs) {
+          this.createdAt = objectAttrs.createdAt
+          this.dimensions = objectAttrs.dimensions
+      }
+
+      destroy() {
+          return `${this.name} was removed from the game.`
+      }
   }
   
   /*
@@ -31,21 +33,14 @@ Prototype Refactor
     * takeDamage() // prototype method -> returns the string '<object name> took damage.'
     * should inherit destroy() from GameObject's prototype
   */
-  
-  function CharacterStats(charAttrs) {
-    GameObject.call(this, charAttrs);
-    this.healthPoints = charAttrs.healthPoints;
-    this.name = charAttrs.name;
+
+  class ChatacterStats extends GameObject {
+    constructor(charAttrs) {
+        super(charAttrs)
+        this.healthPoints = charAttrs.healthPoints
+        this.name = charAttrs.name
+    }
   }
-  
-  
-  
-  CharacterStats.prototype.takeDamage = function () {
-    return `${this.name} took damage.`;
-  }
-  
-  CharacterStats.prototype = Object.create(GameObject.prototype);
-  
   /*
     === Humanoid (Having an appearance or character resembling that of a human.) ===
     * team
