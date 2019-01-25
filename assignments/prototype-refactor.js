@@ -34,11 +34,15 @@ Prototype Refactor
     * should inherit destroy() from GameObject's prototype
   */
 
-  class ChatacterStats extends GameObject {
+  class CharacterStats extends GameObject {
     constructor(charAttrs) {
         super(charAttrs)
         this.healthPoints = charAttrs.healthPoints
         this.name = charAttrs.name
+    }
+
+    takeDamage() {
+        return `${this.name} took damage.`
     }
   }
   /*
@@ -51,21 +55,19 @@ Prototype Refactor
     * should inherit takeDamage() from CharacterStats
   */
   
-  function Humanoid(humanAttrs) {
-    CharacterStats.call(this, humanAttrs);
-    this.team = humanAttrs.team;
-    this.weapons = humanAttrs.weapons;
-    this.language = humanAttrs.language;
+  class Humanoid extends CharacterStats {
+    constructor(humanAttrs) {
+        super(humanAttrs)
+        this.team = humanAttrs.team
+        this.weapons = humanAttrs.weapons
+        this.language = humanAttrs.language
+    }
+
+    greet() {
+        return `${this.name} offers a greeting in ${this.language}`;
+    }
   }
   
-  Humanoid.prototype = Object.create(CharacterStats.prototype);
-  
-  Humanoid.prototype.greet = function() {
-    return `${this.name} offers a greeting in ${this.language}`;
-  }
-  
-  
-   
   /*
     * Inheritance chain: GameObject -> CharacterStats -> Humanoid
     * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
