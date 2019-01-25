@@ -43,11 +43,11 @@ class Student extends Person {
     }
 
     PRAssignment(subject) { 
-        return `${student.name} has begun sprint challenge on ${subject}`
+        return `${this.name} has submitted a PR for ${subject}`
     }
 
-    sprintChallenge() {
-        return `${student.name} has begun sprint challenge on ${subject}`
+    sprintChallenge(subject) {
+        return `${this.name} has begun sprint challenge on ${subject}`
     }
 }
 
@@ -92,11 +92,62 @@ const freida = new Instructor({
       location: 'Los Angeles',
       age: 28,
       gender: 'male',
-      
+      previousBackground: 'Education',
+      className: 'WEBPT4',
+      favSubjects: ['HTML', 'CSS', 'Preprocessing', 'JavaScript', 'Design']
   })
 
+  const sebastian = new Student({
+      name: 'Sebastian',
+      location: 'Mexico',
+      age: 25,
+      gender: 'male',
+      previousBackground: 'Unknown',
+      className: 'UXDesign3',
+      favSubjects: ['Photoshop', 'Illustrator', 'InDesign']
+  })
+
+  const athena = new ProjectManager({
+      name: 'Athena',
+      location: 'Greece',
+      age: 23,
+      gender: 'female',
+      gradClassName: 'GOD1',
+      favInstructor: 'Zeus'
+  })
+
+  const squall = new ProjectManager({
+      name: 'Squall',
+      location: 'Balamb Garden',
+      age: 20,
+      gender: 'male',
+      gradClassName: 'FFVIII',
+      favInstructor: 'Quistis'
+  })
+
+  //Instructors
   console.log(freida.favLanguage);
   console.log(freida.demo('HTML'));
+  console.log(freida.speak());
   console.log(cam.specialty);
- // console.log(cam.grade())
+  console.log(cam.speak());
+  console.log(cam.grade(edgar, 'Front End Design'))
+
+  //Students
+  console.log(edgar.speak());
+  console.log(sebastian.speak());
+  console.log(edgar.listsSubjects());
+  console.log(sebastian.listsSubjects());
+  console.log(edgar.PRAssignment('Ruby'));
+  console.log(sebastian.sprintChallenge('MySQL'))
+
+  //Project Managers
+  console.log(athena.gender);
+  console.log(squall.age);
+  console.log(athena.speak());
+  console.log(squall.speak());
+  console.log(athena.standUp('WebPT4 Chat'))
+  console.log(squall.debugsCode(sebastian, 'Back End Design'))
+
+
   
